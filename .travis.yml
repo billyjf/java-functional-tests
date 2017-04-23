@@ -19,5 +19,5 @@ addons:
     #secret: $TravisSecretAccessKey
     s3_region: "us-west-1"
     paths:
-    - build/reports/tests/*
+    - $(ls build/reports/tests/*)
     debug: true
