@@ -25,7 +25,7 @@ Resources:
                                    's3',
                                    '',
                                    '',
-                                   !Ref S3BucketPublic ] ]
+                                   !Join ['', [!Ref S3BucketPublic, '*']] ] ]
   IAMUserTravisS3UploadAccessKey:
     Type: "AWS::IAM::AccessKey"
     Properties:
