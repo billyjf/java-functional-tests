@@ -7,3 +7,5 @@ deploy:
   secret_access_key: $TravisSecretAccessKey
   bucket: billyjf.functional-tests.junit
   local_dir: build/test-results
+  on:
+    all_branches: true
