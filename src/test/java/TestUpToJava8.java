@@ -1,6 +1,7 @@
 import java8.predicate.Employee;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Rule;
 
 import java.util.*;
 
@@ -12,9 +13,14 @@ import static java8.predicate.EmployeePredicates.*;
  */
 public class TestUpToJava8 {
   private List<Employee> employees;
+	
+	@Rule
+	private TestName name = new TestName();
 
   @Before
   public void setUp() throws Exception {
+		out.println(name.getMethodName());
+		
     // TODO: Replace with the builder pattern
     // http://www.vogella.com/tutorials/DesignPatternBuilder/article.html
     Employee e1 = new Employee(1, 23, "M", "Rick", "Beethovan");
