@@ -17,5 +17,5 @@ addons:
     #bucket: "billyjf.functional-tests.junit"
     #key: $TravisAccessKey
     #secret: $TravisSecretAccessKey
-    s3_region: "us-west-1"
+    s3_region: "us-west-2"
     debug: true
