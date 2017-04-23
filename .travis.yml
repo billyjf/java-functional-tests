@@ -3,12 +3,18 @@ jdk:
   - oraclejdk8
 before_deploy:
   - gradle test
-deploy:
-  provider: s3
-  access_key_id: $TravisAccessKey
-  secret_access_key: $TravisSecretAccessKey
-  bucket: billyjf.functional-tests.junit
-  skip_cleanup: true
-  local_dir: build/reports/tests
-  on:
-    all_branches: true
+#deploy:
+#  provider: s3
+#  access_key_id: $TravisAccessKey
+#  secret_access_key: $TravisSecretAccessKey
+#  bucket: billyjf.functional-tests.junit
+#  skip_cleanup: true
+#  local_dir: build/reports/tests
+#  on:
+#    all_branches: true
+addons:
+  artifacts:
+    s3_region: "us-west-1"
+    paths:
+    - build/reports/tests/*
+    debug: true
