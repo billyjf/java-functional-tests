@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "Travis ci resources."
+Resources:
+  S3BucketPublic:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: "billyjf.functional-tests.junit"
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+  IAMUserTravisS3Upload:
+    Type: "AWS::IAM::User"
+    Properties:
+      UserName: travis
+      Policies:
+      - PolicyName: S3
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - s3:*
+            Resource: !Join [':', ['arn',
+                                   'aws',
+                                   's3',
+                                   '',
+                                   '',
+                                   !Ref S3BucketPublic ] ]
+  IAMUserTravisS3UploadAccessKey:
+    Type: "AWS::IAM::AccessKey"
+    Properties:
+      UserName: !Ref IAMUserTravisS3Upload
+Outputs:
+  TravisAccessKey:
+    Value: !Ref IAMUserTravisS3UploadAccessKey
+  TravisSecretAccessKey:
+    Value: !GetAtt IAMUserTravisS3UploadAccessKey.SecretAccessKey
