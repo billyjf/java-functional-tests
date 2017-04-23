@@ -16,7 +16,7 @@ public class TestUpToJava8 {
   private List<Employee> employees;
 	
 	@Rule
-	private TestName name = new TestName();
+	public TestName name = new TestName();
 
   @Before
   public void setUp() throws Exception {
