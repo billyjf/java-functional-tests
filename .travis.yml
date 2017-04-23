@@ -1,7 +1,7 @@
 language: java
 jdk:
   - oraclejdk8
-after_script: gradle test
+before_deploy: gradle test
 deploy:
   provider: s3
   access_key_id: $TravisAccessKey
