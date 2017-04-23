@@ -1,3 +1,9 @@
 language: java
 jdk:
   - oraclejdk8
+deploy:
+  provider: s3
+  access_key_id: $TravisAccessKey
+  secret_access_key: $TravisSecretAccessKey
+  bucket: billyjf.functional-tests.junit
+  local_dir: build/test-results
