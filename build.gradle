@@ -15,3 +15,10 @@ dependencies {
     testCompile 'io.javaslang:javaslang:2.0.6'
     testCompile 'com.nike.riposte:riposte-spi:0.9.1'
 }
+
+test {
+	reports{
+		junitXml.enabled = false
+		html.enabled = true
+	}
+}
