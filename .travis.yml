@@ -1,11 +1,12 @@
 language: java
 jdk:
   - oraclejdk8
+after_script: gradle test
 deploy:
   provider: s3
   access_key_id: $TravisAccessKey
   secret_access_key: $TravisSecretAccessKey
   bucket: billyjf.functional-tests.junit
-  local_dir: build/test-results
+  local_dir: build/reports/tests/test
   on:
     all_branches: true
