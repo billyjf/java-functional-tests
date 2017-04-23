@@ -3,11 +3,12 @@ jdk:
   - oraclejdk8
 before_deploy:
   - gradle test
+  - ls -R build/reports/tests
 deploy:
   provider: s3
   access_key_id: $TravisAccessKey
   secret_access_key: $TravisSecretAccessKey
   bucket: billyjf.functional-tests.junit
-  local_dir: build/reports/tests
+  local_dir: $TRAVIS_BUILD_DIR/build/reports/tests
   on:
     all_branches: true
