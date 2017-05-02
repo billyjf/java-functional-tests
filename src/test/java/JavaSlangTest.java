@@ -4,13 +4,11 @@ import javaslang.control.Option;
 import org.junit.Test;
 
 import static javaslang.control.Either.right;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static javaslang.control.Option.none;
+import static javaslang.control.Option.some;
+import static org.junit.Assert.*;
 
-/**
- * Created by bfish3 on 4/13/17.
- */
-public class TestJavaSlang {
+public class JavaSlangTest {
   @Test
   public void testEither() throws Exception {
     //assertThat(new Either<Exception, String>());
@@ -28,5 +26,15 @@ public class TestJavaSlang {
 
     assertEquals("None", noneOption.toString());
     assertEquals("Some(val)", someOption.toString());
+    assertFalse(noneOption.isDefined());
+    assertTrue(someOption.isDefined());
+  }
+
+  @Test
+  public void someVsOptionOf() throws Exception {
+    assertNotEquals(Option.of(null), some(null));
+    assertEquals(Option.of(null), none());
+    assertNotEquals(some(null), some(none()));
+    assertEquals(some(Option.of(null)), some(none()));
   }
 }
