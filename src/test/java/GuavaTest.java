@@ -3,7 +3,8 @@ import org.junit.Test;
 
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class GuavaTest {
@@ -12,6 +13,6 @@ public class GuavaTest {
     Map<String, String> myGuavaMap = ImmutableMap.of("key", "value");
 
     assertTrue(myGuavaMap.containsKey("key"));
-    assertEquals(myGuavaMap.get("key"), "value");
+    assertThat(myGuavaMap.get("key"), is("value"));
   }
 }
