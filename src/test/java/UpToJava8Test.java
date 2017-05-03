@@ -1,17 +1,16 @@
 import java8.predicate.Employee;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TestName;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 import static java.lang.System.out;
 import static java8.predicate.EmployeePredicates.*;
+import static org.junit.Assert.assertEquals;
 
-/**
- * Created by bfish3 on 4/13/17.
- */
 public class UpToJava8Test {
   private List<Employee> employees;
 	
@@ -35,8 +34,8 @@ public class UpToJava8Test {
     Employee e9 = new Employee(9, 15, "F", "Neetu", "Singh");
     Employee e10 = new Employee(10, 45, "M", "Naveen", "Jain");
 
-    employees = new ArrayList<Employee>();
-    employees.addAll(Arrays.asList(new Employee[]{e1, e2, e3, e4, e5, e6, e7, e8, e9, e10}));
+    employees = new ArrayList<>();
+    employees.addAll(Arrays.asList(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10));
   }
 
   @Test
@@ -47,12 +46,7 @@ public class UpToJava8Test {
   // http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/Lambda-QuickStart/index.html
   @Test
   public void runnable() {
-    Runnable r1 = new Runnable() {
-      @Override
-      public void run() {
-        out.println("Hello world one!");
-      }
-    };
+    Runnable r1 = () -> out.println("Hello world one!");
 
     Runnable r2 = () -> out.println("Hello world two!");
 
@@ -63,11 +57,7 @@ public class UpToJava8Test {
   @Test
   public void comparator() {
     // Sort with inner class
-    Collections.sort(employees, new Comparator<Employee>() {
-      public int compare(Employee e1, Employee e2) {
-        return e1.getAge().compareTo(e2.getAge());
-      }
-    });
+    employees.sort(Comparator.comparing(Employee::getAge));
 
     for (Employee e : employees) {
       out.println(e);
@@ -76,15 +66,15 @@ public class UpToJava8Test {
     // Use lambda instead
 
     // Print Asc
-    Collections.sort(employees, (e1, e2) -> e1.getAge().compareTo(e2.getAge()));
+    employees.sort(Comparator.comparing(Employee::getAge));
     employees.forEach(out::println);
 
     // Print Asc, Comparator.comparing
-    Collections.sort(employees, Comparator.comparing(Employee::getAge));
+    employees.sort(Comparator.comparing(Employee::getAge));
     employees.forEach(out::println);
 
     // Print Desc
-    Collections.sort(employees, (e1, e2) -> e2.getAge().compareTo(e1.getAge()));
+    employees.sort((e1, e2) -> e2.getAge().compareTo(e1.getAge()));
     employees.forEach(out::println);
   }
 
@@ -106,5 +96,12 @@ public class UpToJava8Test {
 
     //Employees other than above collection of "isAgeMoreThan(35)" can be get using negate()
     out.println(filterEmployees(employees, isAgeMoreThan(35).negate()));
+  }
+
+  @Test
+  public void supplier() {
+    Supplier<String> i = () -> "java2s.com";
+
+    assertEquals("java2s.com", i.get());
   }
 }
