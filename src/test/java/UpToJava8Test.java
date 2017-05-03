@@ -12,7 +12,7 @@ import static java8.predicate.EmployeePredicates.*;
 /**
  * Created by bfish3 on 4/13/17.
  */
-public class TestUpToJava8 {
+public class UpToJava8Test {
   private List<Employee> employees;
 	
 	@Rule
@@ -40,13 +40,13 @@ public class TestUpToJava8 {
   }
 
   @Test
-  public void testClosures() {
+  public void closures() {
 
   }
 
   // http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/Lambda-QuickStart/index.html
   @Test
-  public void runnableTest() {
+  public void runnable() {
     Runnable r1 = new Runnable() {
       @Override
       public void run() {
@@ -61,7 +61,7 @@ public class TestUpToJava8 {
   }
 
   @Test
-  public void comparatorTest() {
+  public void comparator() {
     // Sort with inner class
     Collections.sort(employees, new Comparator<Employee>() {
       public int compare(Employee e1, Employee e2) {
@@ -89,14 +89,14 @@ public class TestUpToJava8 {
   }
 
   @Test
-  public void testLambdaExpression() {
+  public void lambdaExpression() {
     //System.out.println((int x, int y) -> x + y);
     //(String s) -> { System.out.println(s); };
   }
 
   // http://howtodoinjava.com/java-8/how-to-use-predicate-in-java-8/
   @Test
-  public void testPredicates() {
+  public void predicates() {
 
     out.println(filterEmployees(employees, isAdultMale()));
 

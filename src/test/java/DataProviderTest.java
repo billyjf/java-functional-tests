@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
  */
 
 @RunWith(DataProviderRunner.class)
-public class TestDataProvider {
+public class DataProviderTest {
 
   @Before
   public void setUp() throws Exception {
@@ -23,12 +23,12 @@ public class TestDataProvider {
 
   @Test
   @UseDataProvider
-  public void testDataProvider(boolean value) throws Exception {
+  public void dataProvider(boolean value) throws Exception {
     assertThat(value, is(true));
   }
 
   @DataProvider
-  public static Object[][] dataTestDataProvider() {
+  public static Object[][] dataDataProvider() {
     return new Object[][] {
         $(new Boolean(true))
     };

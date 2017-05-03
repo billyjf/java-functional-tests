@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by bfish3 on 4/19/17.
  */
-public class TestPortfolio {
+public class PortfolioTest {
   private Portfolio portfolio;
   private StockService stockService;
 
@@ -27,7 +27,7 @@ public class TestPortfolio {
   }
 
   @Test
-  public void testMarketValue() {
+  public void marketValue() {
     List<Stock> stocks = new ArrayList<Stock>();
     Stock googleStock = new Stock("1", "Google", 10);
     Stock microsoftStock = new Stock("2", "Microsoft", 100);

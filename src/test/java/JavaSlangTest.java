@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class JavaSlangTest {
   @Test
-  public void testEither() throws Exception {
+  public void either() throws Exception {
     //assertThat(new Either<Exception, String>());
     List<Integer> list = List.of(1,2,3);
 
