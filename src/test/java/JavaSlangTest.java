@@ -1,8 +1,14 @@
+import com.google.common.collect.ImmutableMap;
 import javaslang.Function1;
+import javaslang.Tuple2;
+import javaslang.collection.HashMap;
 import javaslang.collection.List;
 import javaslang.control.Either;
 import javaslang.control.Option;
 import org.junit.Test;
+
+import java.util.Map;
+import java.util.function.Consumer;
 
 import static javaslang.control.Either.left;
 import static javaslang.control.Either.right;
@@ -76,5 +82,42 @@ public class JavaSlangTest {
     assertTrue(validResult.isRight());
 
     assertEquals("BILLY", validResult.map(String::toUpperCase).get());
+  }
+
+  @Test
+  public void mapStringToUpperCaseOverList() {
+    List<String> veggies = List.of("cucumber",
+        "spinach",
+        "kale",
+        "broccoli");
+
+    assertEquals(List.of("CUCUMBER",
+        "SPINACH",
+        "KALE",
+        "BROCCOLI"), veggies.map(String::toUpperCase));
+  }
+
+  @Test
+  public void mergeMaps() {
+    Map<String, String> preExistingMap = ImmutableMap.of("pre-existing", "entry");
+    HashMap<String, String> mapToMergeWithPreExisting = HashMap.of("foo", "bar");
+    HashMap<String, String> mergedMap = HashMap.ofAll(preExistingMap).merge(mapToMergeWithPreExisting);
+
+    assertEquals(HashMap.of("pre-existing", "entry",
+        "foo", "bar"),
+        mergedMap);
+  }
+
+  @Test
+  public void forEach() {
+    HashMap<String, String> items = HashMap.of("foo", "bar");
+    HashMap<String, String> targetLonghand = HashMap.of();
+    HashMap<String, String> targetShorthand = HashMap.of();
+
+    Consumer<Tuple2<String, String>> longhand = tuple -> targetLonghand.put(tuple._1, tuple._2);
+    items.forEach(longhand);
+    items.forEach(tuple -> targetShorthand.put(tuple._1, tuple._2));
+
+    assertEquals(targetShorthand, targetLonghand);
   }
 }

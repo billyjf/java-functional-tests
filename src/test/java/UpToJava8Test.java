@@ -40,7 +40,7 @@ public class UpToJava8Test {
 
   @Test
   public void closures() {
-
+    // TODO: Implement
   }
 
   // http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/Lambda-QuickStart/index.html
@@ -103,5 +103,10 @@ public class UpToJava8Test {
     Supplier<String> i = () -> "java2s.com";
 
     assertEquals("java2s.com", i.get());
+  }
+
+  @Test
+  public void usingBiPredicateToExternalizeDecisions() {
+    // TODO: http://scrumbucket.org/tutorials/neo4j-site-crawler/tutorialsneo4j-site-crawlerpart-6-bipredicate/
   }
 }
